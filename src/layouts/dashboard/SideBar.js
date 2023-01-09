@@ -75,7 +75,7 @@ const SideBar = () => {
                     width: "max-content",
                     color:
                       theme.palette.mode === "light"
-                        ? "#000"
+                        ? "#080707"
                         : theme.palette.text.primary,
                   }}
                   key={el.index}

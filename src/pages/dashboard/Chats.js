@@ -95,7 +95,8 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: 20,
-  backgroundColor: alpha(theme.palette.background.default, 1),
+  backgroundColor:
+    theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,
   marginRight: 0,
   width: "100%",
 }));
@@ -129,9 +130,7 @@ const Chats = () => {
         width: 320,
         height: "100%",
         backgroundColor:
-          theme.palette.mode === "light"
-            ? "#F8FAFF"
-            : theme.palette.background.paper,
+          theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background,
         boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
       }}
     >
@@ -149,9 +148,7 @@ const Chats = () => {
           alignItems={"center"}
           justifyContent="space-between"
         >
-          <Typography variant="h5" color="#000">
-            Chats
-          </Typography>
+          <Typography variant="h5">Chats</Typography>
           <IconButton>
             <CircleDashed />
           </IconButton>
