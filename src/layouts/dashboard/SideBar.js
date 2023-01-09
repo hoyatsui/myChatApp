@@ -16,36 +16,39 @@ const SideBar = () => {
 
   return (
     <Box
-      p={2}
       sx={{
-        width: 100,
         height: "100vh",
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
+        width: 100,
+
+        backgroundColor:
+          theme.palette.mode === "light"
+            ? "#F0F4FA"
+            : theme.palette.background.paper,
+        boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
       }}
     >
       <Stack
-        direction="column"
+        py={3}
         alignItems={"center"}
         justifyContent="space-between"
         sx={{ height: "100%" }}
-        spacing={3}
       >
         <Stack alignItems={"center"} spacing={4}>
           <Box
             sx={{
-              backgroundColor: theme.palette.primary.main,
               height: 64,
               width: 64,
               borderRadius: 1.5,
+              backgroundColor: theme.palette.primary.main,
             }}
+            p={1}
           >
-            <img src={Logo} alt={"Chat App Logo"} />
+            <img src={Logo} alt="Tawk" />
           </Box>
           <Stack
             sx={{ width: "max-content" }}
             direction="column"
-            alignItems="center"
+            alignItems={"center"}
             spacing={3}
           >
             {Nav_Buttons.map((el) =>
@@ -81,7 +84,7 @@ const SideBar = () => {
                 </IconButton>
               )
             )}
-            <Divider sx={{ width: "48px" }} />
+            <Divider sx={{ width: 48 }} />
             {selected === 3 ? (
               <Box
                 sx={{
@@ -114,10 +117,8 @@ const SideBar = () => {
 
         <Stack spacing={4}>
           <AntSwitch
-            onChange={() => {
-              onToggleMode();
-            }}
-            defaultChecked
+            defaultChecked={theme.palette.mode === "dark"}
+            onChange={onToggleMode}
           />
           <Avatar src={faker.image.avatar()} />
         </Stack>
