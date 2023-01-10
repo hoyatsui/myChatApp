@@ -8,9 +8,12 @@ import Conversation from "../../components/Conversation";
 // Dynamic import
 // The compimport Conversation from './../../components/Conversation/index';
 import Contact from "./../../components/Contact";
+import { useSelector } from "../../redux/store";
 
 const GeneralApp = () => {
   const theme = useTheme();
+  const { sidebar } = useSelector((store) => store.app);
+
   return (
     <Stack direction="row" sx={{ width: "100%" }}>
       {/* Chats */}
@@ -18,7 +21,7 @@ const GeneralApp = () => {
       <Box
         sx={{
           height: "100%",
-          width: "calc(100vw - 740px)",
+          width: sidebar.open ? `calc(100vw - 740px )` : "calc(100vw - 420px )",
           backgroundColor:
             theme.palette.mode === "light"
               ? "#F0F4FA"
@@ -29,7 +32,7 @@ const GeneralApp = () => {
         <Conversation />
       </Box>
       {/* Contact */}
-      <Contact />
+      {sidebar.open && <Contact />}
     </Stack>
   );
 };
