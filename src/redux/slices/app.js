@@ -25,7 +25,6 @@ const slice = createSlice({
 });
 
 // Reducer
-
 export default slice.reducer;
 
 //
