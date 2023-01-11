@@ -1,7 +1,7 @@
 import React from "react";
 
 const SharedMessages = () => {
-  return <></>;
+  return <div>SharedMessage</div>;
 };
 
 export default SharedMessages;

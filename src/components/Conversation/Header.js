@@ -13,7 +13,7 @@ import { useTheme } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 
 import StyledBadge from "../StyledBadge";
-import { toggleSidebar } from "../../redux/slices/app";
+import { ToggleSidebar } from "../../redux/slices/app";
 
 const Header = () => {
   const theme = useTheme();
@@ -39,7 +39,7 @@ const Header = () => {
         <Stack
           onClick={() => {
             //
-            dispatch(toggleSidebar());
+            dispatch(ToggleSidebar());
           }}
           direction="row"
           spacing={2}

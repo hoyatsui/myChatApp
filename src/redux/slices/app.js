@@ -1,25 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 //
 import { dispatch } from "../store";
+
+// ----------------------------------------------------------------------
 
 const initialState = {
   sidebar: {
     open: false,
-    type: "CONTACT", // can be CONTACT, STARED, SHARED
+    type: "CONTACT", // can be CONTACT, STARRED, SHARED
   },
 };
 
 const slice = createSlice({
-  name: "app",
+  name: "mail",
   initialState,
   reducers: {
-    // Toggle sidebar
-    toggleSidebar(state) {
+    // Toggle Sidebar
+    toggleSideBar(state) {
       state.sidebar.open = !state.sidebar.open;
     },
-    updateSidebarType(state, action) {
-      state.siderbar.type = action.payload.type;
+    updateSideBarType(state, action) {
+      state.sidebar.type = action.payload.type;
     },
   },
 });
@@ -27,14 +28,15 @@ const slice = createSlice({
 // Reducer
 export default slice.reducer;
 
-//
-export function toggleSidebar() {
+// ----------------------------------------------------------------------
+
+export function ToggleSidebar() {
   return async () => {
-    dispatch(slice.actions.toggleSidebar());
+    dispatch(slice.actions.toggleSideBar());
   };
 }
-export function updateSidebarType(type) {
+export function UpdateSidebarType(type) {
   return async () => {
-    dispatch(slice.actions.updateSidebarType({ type }));
+    dispatch(slice.actions.updateSideBarType({ type }));
   };
 }

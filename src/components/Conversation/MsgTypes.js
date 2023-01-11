@@ -32,7 +32,7 @@ const MessageOption = () => {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-        style={{
+        sx={{
           cursor: "pointer",
         }}
       />
