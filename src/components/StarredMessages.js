@@ -16,8 +16,9 @@ import { ToggleSidebar, UpdateSidebarType } from "../redux/slices/app";
 import { faker } from "@faker-js/faker";
 import { SHARED_DOCS, SHARED_LINKS } from "../data";
 import { DocMsg, LinkMsg } from "./Conversation/MsgTypes";
+import Message from "./Conversation/Message";
 
-const SharedMessages = () => {
+const StarredMessages = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
 
@@ -53,20 +54,11 @@ const SharedMessages = () => {
             >
               <CaretLeft />
             </IconButton>
-            <Typography variant="subtitle2">Shared Message</Typography>
+            <Typography variant="subtitle2">Starred Message</Typography>
           </Stack>
         </Box>
         {/* Body */}
-        <Tabs
-          sx={{ px: 2, pt: 2 }}
-          value={value}
-          onChange={handleChange}
-          centered
-        >
-          <Tab label="Media" />
-          <Tab label="Links" />
-          <Tab label="Docs" />
-        </Tabs>
+
         <Stack
           sx={{
             height: "100%",
@@ -75,39 +67,13 @@ const SharedMessages = () => {
             overflowY: "scroll",
           }}
           p={3}
-          spacing={value === 1 ? 1 : 3}
+          spacing={3}
         >
-          {(() => {
-            switch (value) {
-              case 0:
-                return (
-                  <Grid container spacing={2}>
-                    {[0, 1, 2, 3, 4, 5, 6].map((el) => {
-                      return (
-                        <Grid item xs={4}>
-                          <img
-                            src={faker.image.avatar()}
-                            alt={faker.name.fullName()}
-                          />
-                        </Grid>
-                      );
-                    })}
-                  </Grid>
-                );
-              case 1:
-                // Links
-                return SHARED_LINKS.map((el) => <LinkMsg el={el} />);
-              case 2:
-                // Docs
-                return SHARED_DOCS.map((el) => <DocMsg el={el} />);
-              default:
-                break;
-            }
-          })()}
+          <Message menu={false} />
         </Stack>
       </Stack>
     </Box>
   );
 };
 
-export default SharedMessages;
+export default StarredMessages;
