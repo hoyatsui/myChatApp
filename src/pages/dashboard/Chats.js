@@ -11,7 +11,7 @@ import {
   Badge,
 } from "@mui/material";
 import { ArchiveBox, MagnifyingGlass, CircleDashed } from "phosphor-react";
-import { styled, alpha, useTheme } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
 
 import { ChatList } from "../../data";

@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React from "react";
 import { Stack, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Chats from "./Chats";
@@ -9,6 +9,7 @@ import Conversation from "../../components/Conversation";
 // The compimport Conversation from './../../components/Conversation/index';
 import Contact from "./../../components/Contact";
 import { useSelector } from "../../redux/store";
+import SharedMessages from "../../components/Conversation/SharedMessages";
 
 const GeneralApp = () => {
   const theme = useTheme();
@@ -32,7 +33,21 @@ const GeneralApp = () => {
         <Conversation />
       </Box>
       {/* Contact */}
-      {sidebar.open && <Contact />}
+      {sidebar.open &&
+        (() => {
+          switch (sidebar.type) {
+            case "CONTACT":
+              return <Contact />;
+            case "STARRED":
+              // Starred
+              break;
+            case "SHARED":
+              return <SharedMessages />;
+
+            default:
+              break;
+          }
+        })()}
     </Stack>
   );
 };
