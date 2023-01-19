@@ -21,7 +21,7 @@ import {
 } from "phosphor-react";
 import { useTheme } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
-import Shortcuts from "./../../sections/settings/Shortcuts";
+import Shortcuts from "../../sections/settings/Shortcuts";
 const Settings = () => {
   const theme = useTheme();
   const [openShortcuts, setOpenShortcuts] = useState();
