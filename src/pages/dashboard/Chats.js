@@ -25,22 +25,24 @@ const Chats = () => {
   return (
     <Box
       sx={{
-        position: "relative",
+        overflowY: "scroll",
+
+        height: "100vh",
         width: 320,
-        height: "100%",
-        backgroundColor:
+        backgroundColor: (theme) =>
           theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background,
+
         boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
       }}
     >
       <Stack
-        direction="column"
+        // direction="column"
         p={3}
         spacing={2}
         sx={{
           height: "100vh",
         }}
-        justifyContent="center"
+        // justifyContent="center"
       >
         <Stack
           direction="row"
@@ -48,8 +50,8 @@ const Chats = () => {
           justifyContent="space-between"
         >
           <Typography variant="h5">Chats</Typography>
-          <IconButton>
-            <CircleDashed />
+          <IconButton sx={{ padding: 0 }}>
+            <CircleDashed size={28.5} />
           </IconButton>
         </Stack>
         <Stack sx={{ width: "100%" }}>
@@ -62,7 +64,12 @@ const Chats = () => {
         </Stack>
         <Stack spacing={1}>
           <Stack direction={"row"} alignItems={"center"} spacing={1.5}>
-            <ArchiveBox size={24} />
+            <IconButton>
+              <ArchiveBox
+                size={24}
+                style={{ color: theme.palette.primary.main }}
+              />
+            </IconButton>
             <Button>Archive</Button>
           </Stack>
         </Stack>

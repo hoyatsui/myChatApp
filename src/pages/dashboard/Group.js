@@ -76,7 +76,7 @@ const Group = () => {
                 Create New Group
               </Typography>
               <IconButton onClick={handleOpenDialog}>
-                <Plus style={{ color: theme.palette.primary.main }} />
+                <Plus style={{ color: theme.palette.primary.main }} size={24} />
               </IconButton>
             </Stack>
             <Divider />
