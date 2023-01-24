@@ -11,6 +11,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import { Gear } from "phosphor-react";
 import { faker } from "@faker-js/faker";
+import { useNavigate } from "react-router-dom";
 
 import AntSwitch from "../../components/AntSwitch";
 import { Nav_Buttons } from "../../data";
@@ -18,14 +19,30 @@ import Logo from "../../assets/Images/logo.ico";
 import useSettings from "../../hooks/useSettings";
 import { Profile_Menu } from "../../data";
 
+const getPath = (index) => {
+  switch (index) {
+    case 0:
+      return "/app";
+    case 1:
+      return "/group";
+    case 2:
+      return "/call";
+
+    default:
+      return "/settings";
+  }
+};
+
 const SideBar = () => {
   const theme = useTheme();
   const [selected, setSelected] = useState(0);
   const { onToggleMode } = useSettings();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const navigate = useNavigate();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    navigate("/call");
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -86,6 +103,7 @@ const SideBar = () => {
                 <IconButton
                   onClick={() => {
                     setSelected(el.index);
+                    navigate(getPath(el.index));
                   }}
                   sx={{
                     width: "max-content",
@@ -116,6 +134,7 @@ const SideBar = () => {
               <IconButton
                 onClick={() => {
                   setSelected(3);
+                  navigate(getPath());
                 }}
                 sx={{
                   width: "max-content",
