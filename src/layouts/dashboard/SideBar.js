@@ -27,9 +27,25 @@ const getPath = (index) => {
       return "/group";
     case 2:
       return "/call";
+    case 3:
+      return "/settings";
+    default:
+      return "";
+  }
+};
+
+const getMenuPath = (index) => {
+  switch (index) {
+    case 0:
+      return "/profile";
+    case 1:
+      return "/settings";
+    case 2:
+      // TODO=> update token & set isAuth = false
+      return "/auth/login";
 
     default:
-      return "/settings";
+      break;
   }
 };
 
@@ -42,7 +58,6 @@ const SideBar = () => {
   const navigate = useNavigate();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    navigate("/call");
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -134,7 +149,7 @@ const SideBar = () => {
               <IconButton
                 onClick={() => {
                   setSelected(3);
-                  navigate(getPath());
+                  navigate(getPath(3));
                 }}
                 sx={{
                   width: "max-content",
@@ -184,9 +199,14 @@ const SideBar = () => {
             }}
           >
             <Stack spacing={1} px={1}>
-              {Profile_Menu.map((el) => (
-                <MenuItem onClick={handleClose}>
+              {Profile_Menu.map((el, idx) => (
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                  }}
+                >
                   <Stack
+                    onClick={() => navigate(getMenuPath(idx))}
                     sx={{ width: 100 }}
                     direnction="row"
                     alignItems={"center"}
