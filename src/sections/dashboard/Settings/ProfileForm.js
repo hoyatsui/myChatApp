@@ -63,17 +63,19 @@ const ProfileForm = () => {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={4}>
+        {/* Avatar */}
         <RHFUploadAvatar
           name="avatarUrl"
           maxSize={3145728}
           onDrop={handleDrop}
         />
-
+        {/* Name */}
         <RHFTextField
           helperText={"This name is visible to your contacts"}
           name="name"
           label="Full Name"
         />
+        {/* bio */}
         <RHFTextField
           multiline
           rows={4}
