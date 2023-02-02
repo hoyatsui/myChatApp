@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 import AntSwitch from "../../components/AntSwitch";
 import { Nav_Buttons } from "../../data";
-import Logo from "../../assets/Images/logo.ico";
+import Logo from "../../assets/Images/logo1.ico";
 import useSettings from "../../hooks/useSettings";
 import { Profile_Menu } from "../../data";
 
