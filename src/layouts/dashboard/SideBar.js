@@ -18,6 +18,8 @@ import { Nav_Buttons } from "../../data";
 import Logo from "../../assets/Images/logo1.ico";
 import useSettings from "../../hooks/useSettings";
 import { Profile_Menu } from "../../data";
+import { LogoutUser } from "../../redux/slices/auth";
+import { useDispatch } from "react-redux";
 
 const getPath = (index) => {
   switch (index) {
@@ -30,7 +32,7 @@ const getPath = (index) => {
     case 3:
       return "/settings";
     default:
-      return "";
+      break;
   }
 };
 
@@ -50,6 +52,7 @@ const getMenuPath = (index) => {
 };
 
 const SideBar = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const [selected, setSelected] = useState(0);
   const { onToggleMode } = useSettings();
@@ -61,6 +64,7 @@ const SideBar = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+    dispatch(LogoutUser());
   };
   return (
     <Box
@@ -202,11 +206,17 @@ const SideBar = () => {
               {Profile_Menu.map((el, idx) => (
                 <MenuItem
                   onClick={() => {
-                    handleClose();
+                    handleClick();
                   }}
                 >
                   <Stack
-                    onClick={() => navigate(getMenuPath(idx))}
+                    onClick={() => {
+                      if (idx === 2) {
+                        dispatch(LogoutUser());
+                      } else {
+                        navigate(getMenuPath(idx));
+                      }
+                    }}
                     sx={{ width: 100 }}
                     direnction="row"
                     alignItems={"center"}

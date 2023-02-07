@@ -16,7 +16,7 @@ const slice = createSlice({
       state.isLoggedIn = action.payload.isLoggedIn;
       state.token = action.payload.token;
     },
-    SignOut(state, action) {
+    signOut(state, action) {
       state.isLoggedIn = false;
       state.token = "";
     },
@@ -37,7 +37,7 @@ export function LoginUser(formValues) {
           ...formValues,
         },
         {
-          header: {
+          headers: {
             "Content-Type": "application/json",
           },
         }
@@ -52,6 +52,57 @@ export function LoginUser(formValues) {
         console.log(response);
       })
       .catch(function (error) {
+        console.log(error);
+      });
+  };
+}
+export function LogoutUser() {
+  return async (dispatch, getState) => {
+    dispatch(slice.actions.signOut());
+  };
+}
+
+export function ForgotPassword(formValues) {
+  return async (dispatch, getState) => {
+    await axios
+      .post(
+        "/auth/forgot-password",
+        {
+          ...formValues,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function NewPassword(formValues) {
+  return async (dispatch, getState) => {
+    await axios
+      .post(
+        "auth/reset-password",
+        {
+          ...formValues,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
         console.log(error);
       });
   };

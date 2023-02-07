@@ -62,6 +62,10 @@ const GeneralApp = Loadable(
 );
 const GroupPage = Loadable(lazy(() => import("../pages/dashboard/Group")));
 const CallPage = Loadable(lazy(() => import("../pages/dashboard/Call")));
-const Settings = Loadable(lazy(() => import("../pages/dashboard/Settings")));
+const Settings = Loadable(
+  lazy(() => import("../pages/dashboard/Settings/Settings"))
+);
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));
-const ProfilePage = Loadable(lazy(() => import("../pages/dashboard/Profile")));
+const ProfilePage = Loadable(
+  lazy(() => import("../pages/dashboard/Settings/Profile"))
+);
