@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 //
-
+import axios from "../../utils/axios";
 // ----------------------------------------------------------------------
 
 const initialState = {
@@ -8,10 +8,15 @@ const initialState = {
     open: false,
     type: "CONTACT", // can be CONTACT, STARRED, SHARED
   },
+  snackbar: {
+    open: null,
+    message: null,
+    severity: null,
+  },
 };
 
 const slice = createSlice({
-  name: "mail",
+  name: "app",
   initialState,
   reducers: {
     // Toggle Sidebar
@@ -20,6 +25,17 @@ const slice = createSlice({
     },
     updateSideBarType(state, action) {
       state.sidebar.type = action.payload.type;
+    },
+    openSnackBar(state, action) {
+      console.log(action.payload);
+      state.snackbar.open = true;
+      state.snackbar.severity = action.payload.severity;
+      state.snackbar.message = action.payload.message;
+    },
+    closeSnackbar(state, action) {
+      console.log("This is getting executed");
+      state.snackbar.open = false;
+      state.snackbar.message = null;
     },
   },
 });
@@ -39,3 +55,22 @@ export function UpdateSidebarType(type) {
     dispatch(slice.actions.updateSideBarType({ type }));
   };
 }
+
+export const showSnackbar =
+  ({ severity, message }) =>
+  async (dispatch, getState) => {
+    dispatch(
+      slice.actions.openSnackBar({
+        message,
+        severity,
+      })
+    );
+
+    setTimeout(() => {
+      dispatch(slice.actions.closeSnackBar());
+    }, 4000);
+  };
+
+export const closeSnackbar = () => async (dispatch, getState) => {
+  dispatch(slice.actions.closeSnackbar());
+};
