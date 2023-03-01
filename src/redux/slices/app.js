@@ -13,6 +13,9 @@ const initialState = {
     message: null,
     severity: null,
   },
+  users: [],
+  friends: [],
+  friendRequests: [],
 };
 
 const slice = createSlice({
@@ -36,6 +39,17 @@ const slice = createSlice({
       console.log("This is getting executed");
       state.snackbar.open = false;
       state.snackbar.message = null;
+    },
+
+    updateUsers(state, action) {
+      state.users = action.payload.users;
+    },
+
+    updateFriends(state, action) {
+      state.friends = action.payload.friends;
+    },
+    updateFriendRequests(state, action) {
+      state.friendRequests = action.payload.requests;
     },
   },
 });
@@ -73,4 +87,56 @@ export const showSnackbar =
 
 export const closeSnackbar = () => async (dispatch, getState) => {
   dispatch(slice.actions.closeSnackbar());
+};
+
+export const FetchUsers = () => async (dispatch, getState) => {
+  await axios
+    .get("/user/get-users", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getState().auth.token}`,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      dispatch(slice.actions.updateUsers({ users: response.data.data }));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+export const FetchFriends = () => async (dispatch, getState) => {
+  await axios
+    .get("/user/get-friends", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getState().auth.token}`,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      dispatch(slice.actions.updateFriends({ friends: response.data.data }));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+export const FetchFriendRequests = () => async (dispatch, getState) => {
+  await axios
+    .get("/user/get-friend-requests", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getState().auth.token}`,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      dispatch(
+        slice.actions.updateFriendRequests({ requests: response.data.data })
+      );
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
