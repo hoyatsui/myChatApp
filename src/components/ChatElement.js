@@ -1,6 +1,8 @@
 import { Stack, Box, Avatar, Typography, Badge } from "@mui/material";
 import { useTheme, styled } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
+import { useDispatch } from "react-redux";
+import { SelectConversation } from "../redux/slices/app";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -33,8 +35,12 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   return (
     <Box
+      onClick={() => {
+        dispatch(SelectConversation({ room_id: id }));
+      }}
       sx={{
         height: 70,
         width: "100%",
