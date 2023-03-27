@@ -12,6 +12,7 @@ import { useSelector } from "../../redux/store";
 import SharedMessages from "../../components/SharedMessages";
 import StarredMessages from "../../components/StarredMessages";
 import NoChat from "../../assets/Illustration/NoChat";
+import koala from "../../assets/Images/koala1.png";
 
 const GeneralApp = () => {
   const theme = useTheme();
@@ -41,7 +42,17 @@ const GeneralApp = () => {
             alignItems="center"
             justifyContent={"center"}
           >
-            <NoChat />
+            <Stack
+              sx={{ width: "100%" }}
+              direction="column"
+              alignItems="center"
+            >
+              <img
+                style={{ height: 360, width: 360 }}
+                src={koala}
+                alt="koala"
+              />
+            </Stack>
             <Typography variant="subtitle2">
               Select a conversation to start a new one
             </Typography>
